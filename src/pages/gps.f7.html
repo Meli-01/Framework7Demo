@@ -1,0 +1,38 @@
+<template>
+    <div class="page" data-name="gps">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">GPS</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block">
+                <button @click="loadGPSData" class="col button">Load GPS data</button>
+                <p id="gps-data"></p>
+                <p id="error"></p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default {
+        methods: {
+            loadGPSData: function () {
+                navigator.geolocation.getCurrentPosition(this.onSuccess, this.onError, {timeout: 3000});
+            },
+            onSuccess: function (position) {
+                document.getElementById("gps-data").textContent = "Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude;
+            },
+            onError: function (error) {
+                document.getElementById("error").textContent = error.message;
+            }
+        }
+    };
+</script>

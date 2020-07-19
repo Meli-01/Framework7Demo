@@ -1,0 +1,64 @@
+<template>
+    <div class="page" data-name="camera">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">Camera & Gallery</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block">
+                <p style="text-align:center;"><img alt="image" id="photo"/></p>
+                <button @click="takePhoto" class="col button">Open Camera</button>
+                <br/>
+                <button @click="openGallery" class="col button">Open Gallery</button>
+                <p id="message"></p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default {
+        methods: {
+            takePhoto: function () {
+                let options = {
+                    quality: 80,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    sourceType: Camera.PictureSourceType.CAMERA,
+                    mediaType: Camera.MediaType.PICTURE,
+                    encodingType: Camera.EncodingType.JPEG,
+                    cameraDirection: Camera.Direction.BACK,
+                    targetWidth: 300,
+                    targetHeight: 300,
+                    correctOrientation: true
+                };
+                navigator.camera.getPicture(this.onSuccess, this.onFailure, options);
+            },
+            openGallery: function () {
+                let options = {
+                    quality: 80,
+                    destinationType: Camera.DestinationType.FILE_URI,
+                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                    mediaType: Camera.MediaType.PICTURE,
+                    cameraDirection: Camera.Direction.BACK,
+                    targetWidth: 300,
+                    targetHeight: 300,
+                    correctOrientation: true
+                };
+                navigator.camera.getPicture(this.onSuccess, this.onFailure, options);
+            },
+            onFailure: function (msg) {
+                document.getElementById('message').textContent = msg;
+            },
+            onSuccess: function (imageURI) {
+                document.getElementById('photo').src = imageURI;
+            }
+        }
+    };
+</script>

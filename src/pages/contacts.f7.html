@@ -1,0 +1,43 @@
+<template>
+    <div class="page" data-name="contacts">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">Contacts</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block">
+                <button @click="loadContacts" class="col button">Load Contacts</button>
+                <p id="error"></p>
+                <div class="list simple-list">
+                    <ul id="listContent"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default {
+        methods: {
+            loadContacts: function () {
+                navigator.contacts.find([navigator.contacts.fieldType.name], this.onSuccess, this.onError);
+            },
+            onSuccess: function (contacts) {
+                const list = document.getElementById("listContent");
+                for (let i = 0; i < contacts.length; i++) {
+                    list.innerHTML += "<li>" + contacts[i].name.givenName + "</li>";
+                }
+            },
+            onError: function (error) {
+                document.getElementById("error").innerHTML = error.message;
+            }
+        }
+    };
+</script>

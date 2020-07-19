@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+
+  <meta content="#4cd964" name="theme-color">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>DemoFramework7</title>
+  <!-- built styles file will be auto injected -->
+</head>
+<body class="color-theme-green">
+<div id="app"></div>
+<% if (process.env.TARGET === 'cordova') { %>
+<script src="cordova.js"></script>
+<% } %>
+<!-- built script files will be auto injected -->
+</body>
+</html>

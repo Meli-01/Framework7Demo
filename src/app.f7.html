@@ -1,0 +1,36 @@
+<template>
+  <div id="app">
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover color-theme-green panel-init">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner">
+              <div class="title">Content</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block">
+              <p><a href="/gps/" class="link panel-close">GPS</a></p>
+            </div>
+            <div class="block">
+              <p><a href="/camera/" class="link panel-close">Camera & Gallery</a></p>
+            </div>
+            <div class="block">
+              <p><a href="/contacts/" class="link panel-close">Contacts</a></p>
+            </div>
+            <div class="block">
+              <p><a href="/api/" class="link panel-close">Remote API</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main view-init safe-areas" data-url="/"></div>
+  </div>
+</template>
+<script>
+  export default {}
+</script>

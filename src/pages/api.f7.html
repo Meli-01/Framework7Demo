@@ -1,0 +1,43 @@
+<template>
+    <div class="page" data-name="api">
+        <div class="navbar">
+            <div class="navbar-bg"></div>
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">Remote API</div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="block">
+                <button @click="loadData" class="col button">Load data</button>
+                <p><strong>Weather for Bern:</strong></p>
+                <p id="description"></p>
+                <p id="temp"></p>
+                <p id="humidity"></p>
+                <p id="windSpeed"></p>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+    export default {
+        methods: {
+            loadData: function () {
+                fetch('https://api.openweathermap.org/data/2.5/weather?q=Bern&lang=en&units=metric&APPID=your_key')
+                    .then(res => res.json())
+                    .then((r) => {
+                        document.getElementById("description").innerHTML = "Weather: " + r.weather[0].description;
+                        document.getElementById("temp").innerHTML = "Temperature: " + r.main.temp + " °C";
+                        document.getElementById("humidity").innerHTML = "Humidity: " + r.main.humidity + " %";
+                        document.getElementById("windSpeed").innerHTML = "Wind Speed: " + r.wind.speed + " m/s";
+                    })
+                    .catch((e) => console.log(e));
+            }
+        }
+    };
+</script>
